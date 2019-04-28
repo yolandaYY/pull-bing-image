@@ -1,0 +1,15 @@
+{
+  "name": "pull-bing-image",
+  "version": "1.0.0",
+  "description": "pull a image in bing everyday",
+  "main": "pull.js",
+  "dependencies": {
+    "later": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yolanda",
+  "license": "ISC"
+}
