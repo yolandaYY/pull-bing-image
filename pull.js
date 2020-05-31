@@ -2,31 +2,31 @@
 const fs = require('fs');
 const https = require('https');
 const qs = require('querystring');
-const later = require('later');
+// const later = require('later');
 
 // 日志地址
 const logPath = __dirname + '\\' + 'log.txt';
 // 图片下载地址
-const downloadPath = __dirname;
+const downloadPath = "D:\\Pictures\\Camera Roll" + "\\";
 
 // 图片列表地址
 const imageList = "https://cn.bing.com/HPImageArchive.aspx?";
 // 图片列表参数 n：数量  idx：前几天
-const queryString = qs.stringify({ format: "js", idx: 0, n: 1, mkt: "zh-CN" });
+const queryString = qs.stringify({ format: "js", idx: 0, n: 7, mkt: "zh-CN" });
 // 图片源
 const imageOrigin = "https://cn.bing.com/";
 
 // 拉取时间
-const schedules = later.parse.cron('43 16 * * *');
+// const schedules = later.parse.cron('43 16 * * *');
 
 
 function main() {
     // 单次
-    // pull()
+    pull()
 
     // 定时
-    later.date.localTime(); 
-    later.setInterval(() => pull(), schedules);
+    // later.date.localTime(); 
+    // later.setInterval(() => pull(), schedules);
 }
 
 function pull() {
@@ -49,7 +49,7 @@ function pull() {
 function downloadImage(data) {
     data.images.forEach(element => {
         let requestImage = https.get(imageOrigin + element.url, (responeImage) => {
-            log("IMG", responeImage.statusCode);
+            log("IMG", responeImage.statusCode + " " + element.copyright);
 
             let imageData = "";
             responeImage.setEncoding("binary");
